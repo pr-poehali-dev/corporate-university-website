@@ -33,6 +33,41 @@ const Index = () => {
     }
   ];
 
+  const programs = [
+    {
+      title: 'Профессиональная переподготовка',
+      duration: '256-512 часов',
+      format: 'Очное + дистанционное',
+      icon: 'GraduationCap',
+      description: 'Полноценное обучение с получением диплома установленного образца',
+      features: ['Диплом государственного образца', 'Практические занятия', 'Стажировка на производстве']
+    },
+    {
+      title: 'Повышение квалификации',
+      duration: '72-144 часа',
+      format: 'Онлайн + офлайн',
+      icon: 'BookOpen',
+      description: 'Актуализация знаний по специальности и получение новых компетенций',
+      features: ['Удостоверение о повышении квалификации', 'Гибкий график', 'Современные методики']
+    },
+    {
+      title: 'Краткосрочные курсы',
+      duration: '16-40 часов',
+      format: 'Интенсивное обучение',
+      icon: 'Zap',
+      description: 'Быстрое освоение конкретных навыков и технологий',
+      features: ['Сертификат участника', 'Узкая специализация', 'Практические кейсы']
+    },
+    {
+      title: 'Индивидуальное обучение',
+      duration: 'По запросу',
+      format: 'Персональный подход',
+      icon: 'User',
+      description: 'Обучение под конкретные задачи вашей организации',
+      features: ['Индивидуальная программа', 'Гибкое расписание', 'Тьюторское сопровождение']
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
       <header className="bg-primary text-primary-foreground shadow-lg sticky top-0 z-50">
@@ -156,6 +191,56 @@ const Index = () => {
                 {benefit.description && (
                   <p className="text-xs text-muted-foreground text-center">{benefit.description}</p>
                 )}
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-16">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-primary mb-4">Программы обучения</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Выберите подходящий формат обучения для развития компетенций вашей команды
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {programs.map((program, index) => (
+              <Card key={index} className="p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-t-4 border-t-primary animate-fade-in" style={{ animationDelay: `${index * 0.15}s` }}>
+                <div className="flex items-start gap-4 mb-6">
+                  <div className="w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                    <Icon name={program.icon} size={28} className="text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-foreground mb-2">{program.title}</h3>
+                    <div className="flex flex-wrap gap-3 mb-3">
+                      <span className="inline-flex items-center gap-1 text-xs bg-primary/10 text-primary px-3 py-1 rounded-full font-medium">
+                        <Icon name="Clock" size={14} />
+                        {program.duration}
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-xs bg-accent/10 text-accent px-3 py-1 rounded-full font-medium">
+                        <Icon name="Laptop" size={14} />
+                        {program.format}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                  {program.description}
+                </p>
+                <div className="space-y-2 mb-6">
+                  {program.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-sm">
+                      <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Icon name="Check" size={12} className="text-primary" />
+                      </div>
+                      <span className="text-foreground/80">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                <Button className="w-full" variant="outline">
+                  <Icon name="Info" size={16} className="mr-2" />
+                  Подробнее
+                </Button>
               </Card>
             ))}
           </div>
